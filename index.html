@@ -37,7 +37,8 @@
                 let data = response.data;
                 console.log(data);
                 
-                document.getElementById("result").innerHTML = data.city;
+                document.getElementById("result").innerHTML += data.temperature;
+                document.getElementById("result").innerHTML += data.city;
                
             })
             .catch(function (error) {
