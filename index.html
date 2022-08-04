@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client App</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Widget</h1>
+        <form onsubmit="getWeatherData(); return false">
+            <label for="cityname">Enter City Name</label>
+            <input type="text" required id="cityname">
+
+            <button type="submit">Get Weather Data</button>
+        </form>
+        <div class="result">
+            <h2> Dummy Weather Data from my own server</h2>
+            <div class="para">
+                <p id="result"></p>
+               
+            </div>
+        </div>
+    </div>
+    
+
+    <script>
+        function getWeatherData(){
+        let cityname = document.querySelector(`#cityname`).value;
+        // axios.get(`http://localhost:3000/weather`)
+        axios.get(`https://myweather-server.herokuapp.com/weather`)
+            .then(function (response) {
+                // handle success
+                let data = response.data;
+                console.log(data);
+                
+                document.getElementById("result").innerHTML = data.city;
+               
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+        }
+    </script>
+    
+
+
+    <!-- https://api.weatherapi.com/v1/current.json?key=1cab1b66b8964883bfe133911222907&q=London&aqi=no --> 
+</body>
+</html>
